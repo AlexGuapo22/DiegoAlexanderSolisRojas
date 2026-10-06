@@ -1,8 +1,8 @@
 using System;
 
-// DECLARACIÓN DE VARIABLES
+// declaracion de bariables
 const int N = 12;
-// Cada índice relaciona una cédula con el nombre del mismo paciente.
+// cada indice relasiona una cedula con el nombre del mismo paciente
 string[] cedulas = new string[N];
 string[] nombres = new string[N];
 int contador = 0;
@@ -19,8 +19,8 @@ int posicion = -1;
 int i;
 int j;
 
-// INICIALIZACIÓN DE VECTORES
-// Las doce posiciones empiezan vacías; contador distingue los registros reales.
+// inicialisacion de vectores
+// las doce posiciones empiezan vacias y contador distingue los registros reales
 for (i = 0; i < N; i++)
 {
     cedulas[i] = "";
@@ -29,43 +29,43 @@ for (i = 0; i < N; i++)
 
 do
 {
-    // ENTRADA DE DATOS: se muestra el menú y se capturan la opción y los datos requeridos.
+    // entrada de datos
     Console.WriteLine();
-    Console.WriteLine("=== Sistema de Admisiones - Hospital San Rafael ===");
-    Console.WriteLine("1. Agregar un paciente");
-    Console.WriteLine("2. Buscar paciente por cédula");
-    Console.WriteLine("3. Modificar nombre de un paciente");
-    Console.WriteLine("4. Dar de baja a un paciente");
-    Console.WriteLine("5. Salir");
-    Console.Write("Seleccione una opción: ");
+    Console.WriteLine("=== sistema de admisiones - hospital san rafael ===");
+    Console.WriteLine("1. agregar un paciente");
+    Console.WriteLine("2. buscar paciente por cedula");
+    Console.WriteLine("3. modificar nombre de un paciente");
+    Console.WriteLine("4. dar de baja a un paciente");
+    Console.WriteLine("5. salir");
+    Console.Write("seleccione una opcion: ");
     int.TryParse(Console.ReadLine(), out opcion);
 
     if (opcion == 1)
     {
-        Console.Write("Digite el nombre del paciente: ");
+        Console.Write("digite el nombre del paciente: ");
         nombre = Console.ReadLine();
-        Console.Write("Digite la cédula del paciente: ");
+        Console.Write("digite la cedula del paciente: ");
         cedula = Console.ReadLine();
     }
     else if (opcion == 2)
     {
-        Console.Write("Digite la cédula que desea buscar: ");
+        Console.Write("digite la cedula que desea buscar: ");
         cedulaBuscada = Console.ReadLine();
     }
     else if (opcion == 3)
     {
-        Console.Write("Digite la cédula del paciente que quieres modificar: ");
+        Console.Write("digite la cedula del paciente que quieres modificar: ");
         cedulaBuscada = Console.ReadLine();
-        Console.Write("Digite el nombre corregido: ");
+        Console.Write("digite el nombre corregido: ");
         nuevoNombre = Console.ReadLine();
     }
     else if (opcion == 4)
     {
-        Console.Write("Digite la cédula del paciente que quieres dar de baja: ");
+        Console.Write("digite la cedula del paciente que quieres dar de baja: ");
         cedulaBuscada = Console.ReadLine();
     }
 
-    // PROCESO
+    // prosesamiento
     mensaje = "";
     encontrado = false;
     posicion = -1;
@@ -76,22 +76,22 @@ do
         case 1:
             if (contador < N)
             {
-                // Se agregan ambos datos juntos al final de los registros ocupados.
+                // se agregan juntos ambos datos al final de los registros ocupados
                 cedulas[contador] = cedula;
                 nombres[contador] = nombre;
                 contador++;
-                mensaje = "Paciente agregado correctamente.";
+                mensaje = "paciente agregado correctamente";
             }
             else
             {
-                mensaje = "Cupo lleno. No es posible registrar más pacientes.";
+                mensaje = "cupo lleno, no es posible registrar mas pacientes";
             }
             break;
 
         case 2:
             for (i = 0; i < contador; i++)
             {
-                // La búsqueda usa la cédula y conserva el índice para consultar el nombre asociado.
+                // la busqueda usa la cedula y guarda el indice para consultar el nombre asociado
                 if (cedulas[i] == cedulaBuscada)
                 {
                     encontrado = true;
@@ -102,11 +102,11 @@ do
 
             if (encontrado)
             {
-                mensaje = "Paciente encontrado: " + nombres[posicion] + " | Cédula: " + cedulas[posicion];
+                mensaje = "paciente encontrado: " + nombres[posicion] + " | cedula: " + cedulas[posicion];
             }
             else
             {
-                mensaje = "No se encontró un paciente con esa cédula.";
+                mensaje = "no se encontro un paciente con esa cedula";
             }
             break;
 
@@ -115,7 +115,7 @@ do
             {
                 if (cedulas[i] == cedulaBuscada)
                 {
-                    // Solo se cambia el nombre; la cédula y su posición permanecen iguales.
+                    // solo se cambia el nombre y la cedula queda en la misma posision
                     nombres[i] = nuevoNombre;
                     encontrado = true;
                     break;
@@ -124,11 +124,11 @@ do
 
             if (encontrado)
             {
-                mensaje = "Nombre del paciente actualizado correctamente.";
+                mensaje = "nombre del paciente actualizado correctamente";
             }
             else
             {
-                mensaje = "No se encontró un paciente con esa cédula.";
+                mensaje = "no se encontro un paciente con esa cedula";
             }
             break;
 
@@ -139,7 +139,6 @@ do
                 {
                     nombreEliminado = nombres[i];
 
-                    // Se mueven juntos los datos de cada paciente para no desincronizar los vectores.
                     for (j = i; j < contador - 1; j++)
                     {
                         cedulas[j] = cedulas[j + 1];
@@ -156,25 +155,25 @@ do
 
             if (encontrado)
             {
-                mensaje = "El paciente " + nombreEliminado + " con la cédula " + cedulaBuscada + " se dio de baja correctamente.";
+                mensaje = "el paciente " + nombreEliminado + " con la cedula " + cedulaBuscada + " se dio de baja correctamente";
             }
             else
             {
-                mensaje = "No se encontró un paciente con esa cédula.";
+                mensaje = "no se encontro un paciente con esa cedula";
             }
             break;
 
         case 5:
             continuar = false;
-            mensaje = "Saliendo del sistema. Hasta luego.";
+            mensaje = "saliendo del sistema, hasta luego";
             break;
 
         default:
-            mensaje = "Opción no válida. Intente nuevamente.";
+            mensaje = "opcion no valida, intente nuevamente";
             break;
     }
 
-    // SALIDA DE DATOS
+    // salida de datos
     Console.WriteLine(mensaje);
 }
 while (continuar);
