@@ -2,6 +2,7 @@ using System;
 
 // DECLARACIÓN DE VARIABLES
 const int N = 12;
+// Cada índice relaciona una cédula con el nombre del mismo paciente.
 string[] cedulas = new string[N];
 string[] nombres = new string[N];
 int contador = 0;
@@ -18,11 +19,19 @@ int posicion = -1;
 int i;
 int j;
 
+// INICIALIZACIÓN DE VECTORES
+// Las doce posiciones empiezan vacías; contador distingue los registros reales.
+for (i = 0; i < N; i++)
+{
+    cedulas[i] = "";
+    nombres[i] = "";
+}
+
 do
 {
-    // ENTRADA DE DATOS
+    // ENTRADA DE DATOS: se muestra el menú y se capturan la opción y los datos requeridos.
     Console.WriteLine();
-    Console.WriteLine(" /////// Sistema de Admisiones // Hospital San Rafael ////");
+    Console.WriteLine("=== Sistema de Admisiones - Hospital San Rafael ===");
     Console.WriteLine("1. Agregar un paciente");
     Console.WriteLine("2. Buscar paciente por cédula");
     Console.WriteLine("3. Modificar nombre de un paciente");
@@ -67,6 +76,7 @@ do
         case 1:
             if (contador < N)
             {
+                // Se agregan ambos datos juntos al final de los registros ocupados.
                 cedulas[contador] = cedula;
                 nombres[contador] = nombre;
                 contador++;
@@ -74,13 +84,14 @@ do
             }
             else
             {
-                mensaje = "Espacio lleno, lo sentimos, su solicitud fue enviada a el hospital san juan de dios, ya viene una ambulancia por usted.";
+                mensaje = "Cupo lleno. No es posible registrar más pacientes.";
             }
             break;
 
         case 2:
             for (i = 0; i < contador; i++)
             {
+                // La búsqueda usa la cédula y conserva el índice para consultar el nombre asociado.
                 if (cedulas[i] == cedulaBuscada)
                 {
                     encontrado = true;
@@ -91,7 +102,7 @@ do
 
             if (encontrado)
             {
-                mensaje = "Paciente encontrado: " + nombres[posicion];
+                mensaje = "Paciente encontrado: " + nombres[posicion] + " | Cédula: " + cedulas[posicion];
             }
             else
             {
@@ -104,6 +115,7 @@ do
             {
                 if (cedulas[i] == cedulaBuscada)
                 {
+                    // Solo se cambia el nombre; la cédula y su posición permanecen iguales.
                     nombres[i] = nuevoNombre;
                     encontrado = true;
                     break;
@@ -127,6 +139,7 @@ do
                 {
                     nombreEliminado = nombres[i];
 
+                    // Se mueven juntos los datos de cada paciente para no desincronizar los vectores.
                     for (j = i; j < contador - 1; j++)
                     {
                         cedulas[j] = cedulas[j + 1];
