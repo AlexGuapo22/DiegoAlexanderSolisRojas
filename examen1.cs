@@ -1,8 +1,8 @@
 using System;
 
-// declaracion de bariables
+// declaracion de variables
 const int N = 12;
-// cada indice relasiona una cedula con el nombre del mismo paciente
+// cada indice relaciona una cedula con el nombre del mismo paciente
 string[] cedulas = new string[N];
 string[] nombres = new string[N];
 int contador = 0;
@@ -19,7 +19,7 @@ int posicion = -1;
 int i;
 int j;
 
-// inicialisacion de vectores
+// inicializacion de vectores
 // las doce posiciones empiezan vacias y contador distingue los registros reales
 for (i = 0; i < N; i++)
 {
@@ -65,7 +65,7 @@ do
         cedulaBuscada = Console.ReadLine();
     }
 
-    // prosesamiento
+    // procesamiento
     mensaje = "";
     encontrado = false;
     posicion = -1;
@@ -115,7 +115,7 @@ do
             {
                 if (cedulas[i] == cedulaBuscada)
                 {
-                    // solo se cambia el nombre y la cedula queda en la misma posision
+                    // solo se cambia el nombre y la cedula queda en la misma posicion
                     nombres[i] = nuevoNombre;
                     encontrado = true;
                     break;
